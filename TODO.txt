@@ -1,0 +1,18 @@
+1. Verifica noul nume introdus in DB [sa nu fie numar, sa nu contina caractere speciale]
+2. Remove HARD_CODED paths (e.g. ImageCapture)
+3. flag pentru a adauga mai multe poze pt aceeasi persoana
+4. close the GUI after the name was written down
+5. Let admin-user select if there should be a model retraining
+6. implement a way to take photos from facebook profile... for login
+
+Fb app ID: 190726614908422
+
+ https://graph.facebook.com/oauth/authorize?client_id=190726614908422&redirect_uri=http://www.facebook.com/connect/login_success.html&type=user_agent&display=popup&scope=user_photos,friends_photos
+
+
+ https://graph.facebook.com/oauth/authorize?client_id=190726614908422&redirect_uri=http://www.facebook.com/connect/login_success.html&type=user_agent&display=popup&scope=user_photos,friends_photos
+
+
+190726614908422
+
+ https://graph.facebook.com/oauth/authorize?client_id=190726614908422&redirect_uri=http://www.facebook.com/connect/login_success.html&type=user_agent&display=popup&scope=user_photos,friends_photos

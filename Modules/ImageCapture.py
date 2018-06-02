@@ -1,6 +1,9 @@
 import cv2
 import os
 from dummyDB import *
+from AnotherGUI import *
+
+
 
 def captureImage():
     cam = cv2.VideoCapture(0)
@@ -22,8 +25,21 @@ def captureImage():
             break
         elif k%256 == 32:
             # SPACE pressed
-            path = 'D:/__Licenta/Test/ImageDB'
-            numeCandidat = input("Introduceti numele persoanei: ")
+            path = 'D:/GitLocalRepo/ProiectLicenta_git/Image_DataBase/train/'
+            os.chdir(path)
+            # start simple GUI
+            init_gui()
+
+            # numele ultimului angajat introdus in lista
+            numeCandidat = lista_nume_angajati[len(lista_nume_angajati) - 1]
+
+            # creaza un nou director pentru noul angajat
+            if not os.path.exists(numeCandidat):
+                os.makedirs(numeCandidat)
+                path = 'D:/GitLocalRepo/ProiectLicenta_git/Image_DataBase/train/' + numeCandidat
+            else:
+                print("Numele introdus face parte din baza noastra de date.")
+
             img_name = (numeCandidat + "{}.jpg").format(img_counter)
             cv2.imwrite(os.path.join(path, img_name), frame)
             imagePath = path + '/' + img_name
