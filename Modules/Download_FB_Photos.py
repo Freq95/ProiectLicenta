@@ -26,10 +26,10 @@ TIMEZONE = timezone("US/Eastern")
 
 # Your OAuth access token
 # If you need a token, see `README.mdown` in this gist
-TOKEN = "EAACtdwAhfgYBAOlEZBbyDOVWmg32JDl1DACyZCBNiCCHPNdNgFpPOpVvvYq8KqAZA9ZB6Q80YFbfImHEw9B5m62kUbC14yStFc78Da5SHueCFIdJGTjC6F99kQkvxkvuxn2i9HBXeusqvZBZAXujidIbHrAPVc2auNdBIasJQtdwZDZD"
+TOKEN = "EAACtdwAhfgYBAGlXJhvpWL4WHhYDKLGSVJb2To7guvCpbbYBUBaS4DGLSdCZCi6AqCyUpOoZAXfVMduWoaqUaY3615artnuZA0UQ4EschDXRZAgRRTQ7wX7Op8jZArBXD70krrFvJfbSwXvVXwFmZCigJXARtm6JwZD"
 
 # User ID of the person whose albums you want to download
-USER_ID = "814479751939072"  # can be a FB profile "username" (URL alias) or ID number
+USER_ID = "100001311647240"  # can be a FB profile "username" (URL alias) or ID number
 
 # If you want to only download albums that have been updated since a certain date.
 # DATE_FILTER = datetime(2010,12,1)
