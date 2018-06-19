@@ -176,7 +176,7 @@ def show_prediction_labels_on_image(img, predictions, check_repetition_array):
 def text2speech():
     speak = wincl.Dispatch("SAPI.SpVoice")
     speak.Speak("Hello " + name + " the access is grant!")
-
+    # TODO: apeleaza pagina cu accesul permis
 
 def check_repetition(check_repetition_array):
     access_flag = 0
