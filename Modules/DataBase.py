@@ -1,5 +1,4 @@
 import sqlite3
-import cv2
 
 conn = sqlite3.connect('peopledb.sqlite')
 
@@ -15,7 +14,7 @@ def insert(name, age, image):
     cursor.execute(sqlstr)
     connect.commit()
 
-create_table()
-imgPath = 'D:/__Licenta/Test/ImageDB/img1.jpg'
-img = cv2.imread(imgPath, 0)
-insert('Paul', 22, img)
+#create_table()
+#imgPath = 'D:/__Licenta/Test/ImageDB/img1.jpg'
+#img = cv2.imread(imgPath, 0)
+#insert('Paul', 22, img)

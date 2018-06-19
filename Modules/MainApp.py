@@ -173,61 +173,70 @@ def show_prediction_labels_on_image(img, predictions, check_repetition_array):
     return flag
 
 
-def text2speech():
+def text2speech_simple():
     speak = wincl.Dispatch("SAPI.SpVoice")
     speak.Speak("Hello " + name + " the access is grant!")
     # TODO: apeleaza pagina cu accesul permis
 
+
 def check_repetition(check_repetition_array):
     access_flag = 0
     if len(check_repetition_array) > 8:
-        last_element = check_repetition_array[len(check_repetition_array) - 1]
-        current_first = check_repetition_array[len(check_repetition_array) - 8]
+        while check_repetition_array[len(check_repetition_array) - 1] != "unknown":
+            last_element = check_repetition_array[len(check_repetition_array) - 1]
+            current_first = check_repetition_array[len(check_repetition_array) - 8]
 
-        k = 0
-        for i in range(7):
-            if current_first == check_repetition_array[len(check_repetition_array) - 7 + i]:
-                k = k + 1
+            k = 0
+            for i in range(7):
+                if current_first == check_repetition_array[len(check_repetition_array) - 7 + i]:
+                    k = k + 1
 
-        if k == 7:
-            text2speech()
-            access_flag = 1
+            if k == 7:
+                text2speech_simple()
+                access_flag = 1
+                break
+            else:
+                break
     return access_flag
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
+def start_nn(train_flag):
     # STEP 1: Train the KNN classifier and save it to disk
     # Once the model is trained and saved, you can skip this step next time.
 
     """
     !!! uncomment_this if u want to do another training session
     """
-    print("Training KNN classifier...")
-    classifier = train("../Image_DataBase/train", model_save_path="trained_knn_model.clf", n_neighbors=2)
-    print("Training complete!")
-    # flag = 0
-    check_repetition_array = []
-    video_capture = cv2.VideoCapture(0)
-    while True:
-        ret, frame = video_capture.read()
+    if train_flag:
+        print("Training KNN classifier...")
+        classifier = train("../Image_DataBase/train", model_save_path="trained_knn_model.clf", n_neighbors=2)
+        print("Training complete!")
+        # flag = 0
+    else:
+        check_repetition_array = []
+        video_capture = cv2.VideoCapture(0)
+        global frame, name
+        while True:
+            ret, frame = video_capture.read()
 
-        # Resize frame of video to 1/4 size for faster face recognition processing
-        small_frame = cv2.resize(frame, (0, 0), fx=0.333, fy=0.333)
-        # frame = frame[:, :, ::-1]
-        predictions = predict(small_frame, model_path="trained_knn_model.clf")
+            # Resize frame of video to 1/4 size for faster face recognition processing
+            small_frame = cv2.resize(frame, (0, 0), fx=0.333, fy=0.333)
+            # frame = frame[:, :, ::-1]
+            predictions = predict(small_frame, model_path="trained_knn_model.clf")
 
-        # Print results on the console
-        for name, (top, right, bottom, left) in predictions:
-            print("- Found {} at ({}, {})".format(name, left, top))
+            # Print results on the console
+            for name, (top, right, bottom, left) in predictions:
+                print("- Found {} at ({}, {})".format(name, left, top))
 
-        # Display results overlaid on an image
-        flag = show_prediction_labels_on_image(frame, predictions, check_repetition_array)
+            # Display results overlaid on an image
+            flag = show_prediction_labels_on_image(frame, predictions, check_repetition_array)
 
-        if flag == 1:
-            break
+            if flag == 1:
+                break
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
 
-    video_capture.release()
-    cv2.destroyAllWindows()
+        video_capture.release()
+        cv2.destroyAllWindows()
