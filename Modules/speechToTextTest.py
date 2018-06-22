@@ -6,7 +6,7 @@ from AnotherGUI import *
 from dummyDB import create_or_open_db, insert_picture
 import multiprocessing
 import win32com.client as wincl
-
+from time import sleep
 
 def text2speech(case):
 
@@ -30,6 +30,7 @@ def text2speech(case):
 
 def speech2text():
     # Record Audio
+    sleep(3)
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Say something!")
