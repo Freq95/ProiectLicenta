@@ -1,0 +1,393 @@
+Capitolul 1. Introducere
+
+1.1. Context
+In Romania si chiar la nivel European, dezvoltarea aplicatiilor desktop este inca la putere, in era vitezei pentru a multumirea clientul apare nevoie de a tine pasul anual cu noile tendinte din sfera tehnologica.
+Recunoasterea faciala reprezinta in prezent o zona foarte cercetata in stiinta calculatoarelor. Securitatea prin utilizarea solutiilor de recunoastere faciala este valul viitorului. Utilizatorii pot accesa conturi, pot primi acces in diferite institutii si toate acestea cu un singur “selfie”. 
+Autentificarea prin recunoastere faciala functioneaza in felul urmator, un simplu “selfie” realizat cu o camera de fotografiat (fie ca este vorba de o camera de telefon sau o cameera web), creeaza un sablon biometric, foarte precis si securizat, al fetei unui utilizator folosind algoritmi sofisticati de invatare automata.
+Viteza se obtine evitand indelungatul proces de creare unui cont, pentru acest lucru utilizatorul poate alege logarea cu facebook-ul sau poate opta pentru o serie de fotografii facute pe loc, cu o camera web pentru a face parte din baza de date.
+Baza de date este folosita de o retea neuronala bine antrenata, pentru ca recunoasterea faciala sa aiba loc in cel mai rapid si eficient mod cu putinta. Confirmarea persoanei in cauza cu una existenta in baza de date, ii va permite accesul persoanei respective spre exemplu intr-o companie, confirmarea se face printr-un mesaj audio.
+
+
+ 
+1.2. Tema proiectului
+Limbajul de programare pentru aplicatia curenta este Python, fiind o aplicatie desktop pentru sistemul de operare Windows, aceasta foloseste un API de la Facebook pentru popularea bazei de date SQLite.
+Baza de date este populata, fie cu ajutorul API-ului de la Facebook, care prin autentificare la contul personal de facebook, descarca toate pozele de profil ale persoanei in cauza, fie utilizatorului i se vor face pe loc poze din diferite unghiuri cu ajutorul unei camere web, poze care vor fii salvate in baza de date, iar mai api vor fi folosite de reteaua neuronala, in prima faza pentru antrenare, iar mai apoi pentru a acordarea accesului in cladire.
+Acordarea accesului se face prin confirmarea persoanei detectate de catre o camera din sistem cu una deja existenta in baza de date, in cazul in care persoana in cauza nu exista in baza de date, se va trimite un mail de instiintare catre administratorul aplicatiei (IT-ul – in cazul companiilor), acesta avand ulterior posibilitatea de a adauga noua persoana in baza de date. Dupa confirmarea persoanei cu una existenta in baza de date, utilizatorului in cauza i se va permite accesul in locatia in care aplicatia activeaza. Intreg sistemul functioneaza si pe baza de comenzi vocale, sistem care la randul lui va putea informa utilizatorul cu un mesaj audio corespunzator situatiei curente (exemplu: “Accesul este permis.”). Datorita acestei interactiuni biunivoce, sistemul este foarte usor de gestionat si de intretinut.
+Intreaga aplicatie va rula pe un singur sistem de calcul, pe care se va regasi baza de date cu persoanele cu drept de acces si fisierul responsabil cu datele antrenate pentru reteaua neuronala.
+ 
+1.3. Python – Prezentare Generala
+Python este un limbaj de programare dinamic, a fost dezvoltat in 1989 de catre un programator de origine olandeza Guido van Rossum. O multitudine de companii folosesc Python ca si limbaj de programare, cateva dintre acestea ar fii: Google sau Yahoo! folosit pentru programarea aplicatiilor web. Python poate fii folosit si pentru crearea unor aplicatii stiintifice sau de divertisment, aplicatii care pot fii programate fie partial fie in intregime in Python. 
+Datorita popularitatii si puterii foarte ridicate, limbajul de programare este foarte apreciat in randul programatorilor specializati, fiind un instrument foarte apreciat in cadrul mediilor universitare. Accentul este pus pe curatenia si simplitatea codului, sintaxa le permite dezvoltatorilor sa isi exprime ideile programatice intr-o maniera mult mai clara si mai concisa spre deosebire de alte limbaje de programare. 
+
+ 
+Figura 1. Logo-ul Python.
+
+Aplicatia care face subiectul acestei lucrari a fost dezvoltata in Python 3.6, versiune lansata in anul 2016, acest lucru insemnand ca toate imbunatatirile recente ale bibliotecilor, sunt disponiibile in mod implicit numai in Python 3.x.
+
+ 
+1.4. Retele Neuronale
+Retelele neuronale reprezinta acea ramura a stiintei inteligentei artificiale si constituie totodata, un instrument de cercetare pentru neuroinformatica. Retelele neuronale artificiale se caracterizeaza ca fiind elemente simple de procesare, fiind puternic interconectate si paralel operationale, avand ca rol interactiunea cu mediul inconjurator intr-o maniera asemanatoare creierelor biologice, prezentand o capacitate avansata de invatare.
+Retelele neuronale sunt compuse din neuroni artificiali, fiind parte a inteligentei artificiale, avand conceptional originea ca si neuroni artificiali, in biologie. Retelele neuronale pot fii definite ca fiind retele de elemente simple, dar puternic interconectate prin intermediul unor legaturi, care poarta denumirea de interconexiuni, prin care se propaga informatie numerica.
+
+ 
+Figura 2. Straturile de baza ale unei retele neuronale.
+
+
+Principala trasatura a acestor retele este capacitatea de invatare pe baza unor exemple, utilizand experienta precedenta in scopul imbunatatirii rezultatelor.
+
+Desi asemanarea cu creierul uman, atunci cand vine vorba de functionare este destul de mare, retelele neuronale se diferenteaza ca si structura fata de creierul uman. Reteaua neuronala este mult simplificata in comparatie cu corespondentul sau uman, insa la fel ca si creierul uman, se compune din unitati puternice cu capacitate de calcul, cu toate acestea sunt mult inferioare neuronului.
+Retelele neuronale artificiale sunt caracterizate pe baza a 3 elemente:
+•	Modelul utilizat pentru procesarea individuala
+•	Arhitectura
+•	Mecanisme de invatare
+
+ Exista mai multe moduri de a clasifica modelele neuronului elementar, acestea implica: domeniul definitiilor pentru semnalele folosite, natura datelor utiliizate, tipul functiei apelate si prezenta memoriei. 
+La nivel macro se pot identifica doua clase de arhitecturi:
+•	Cele care propaga informatia doar dinspre intrare spre iesire
+•	Retele cu reactie
+
+Retelele neuronala au deasemenea cateva dezavantaje, aceste dezavantaje sunt reprezentate de lipsa teoriei care este responsabila pentru precizarea tipului retelei si a numarului de neuroni elementari, precum si modalitatile de interconectare.
+Exista mai multe deosebiri intre retelele neuronale si sistemele electronice de prelucrare a informatiilor, insa principala diferenta este reprezentata de capacitatea de invatare, care se desfasoara in urma interactiunii cu mediul inconjurator si imbunatatirea continua a performantelor.
+Reprezentarea corecta a informatiilor, cu scopul de a permite interpretarea, predictia si raspunsul sistemului la stimuli externi, pot permite retelei neuronale sa dezvolte un model propriu al procesului in cauza, astfel acest model, in cele din urma va putea raspunde unor stimuli care nu au fost utilizati in procesul anterior de invatare a retelei. Informatiile folosite in cadrul procesului de invatare, pot fi: informatii care se cunosc dinainte sauu perechi de intrare-iesire (cu rol in stabilirea relatiei de tip cauza-efect), modul de reprezentare interna, urmand un set de reguli foarte bine documentate.    
+Conceptele reselelor neuronale ne permite sa extragem o gama larga de caracteristici din imagini. Extragerea caracteristicilor pentru recunoasterea faciala se foloseste de aceasta idee.
+Invatarea profunda, este zona incipienta a informaticii care revolusioneaza inteligensa artificiala, permisându-ne sa construim masini si sisteme ale viitorului. Desi învasarea profunda usureaza viasa, înselegerea modului în care funcsioneaza poate fi dificila.
+Invasarea automata este o zona a Inteligensei Artificiale (AI) care le permite calculatoarelor sa "învese". În mod tradisional, întotdeauna am folosit computerele pentru a face lucruri, oferind un set strict de instrucsiuni (de exemplu, programe de calculator). Învasarea cu masini utilizeaza o abordare foarte diferita. În loc sa oferim computerului un set de instrucsiuni despre cum sa facem ceva, îi oferim instrucsiuni despre cum sa învesi sa faci ceva. 
+Oferindu-i date si programând pentru a folosi diferite modele matematice si statistice care sa convinga datele si sa învese sa ia decizii bazate pe acestea. Aceasta abordare nu face altceva decat sa invete algoritmul sa urmareasca diferentele de aspect daca vorbim de imagini. Acest lucru se poate face folosind o serie de algoritmi diferisi. 
+In acest fel, computerul "învasa" singur, în loc sa fie programat în mod specific sa faca o anumita sarcina. Procesul de predare a calculatorului (adica oferirea datelor de învasare) poarta denumirea de antrenament.
+Învasarea profunda, asa cum sugereaza si numele, reprezinta un subdomeniu a învasarii masinilor. Învasarea în profunzime implica, în cea mai mare parte, utilizarea unor resele neuronale profunde (algoritmi / modele computasionale) pentru a aborda problemele de învasare mecanica. 
+Uneori folosirea algoritmilor de luare a deciziilor si / sau a altor algoritmi de învasare a masinilor poate fi, de asemenea, numita învasare profunda, dar, în cea mai mare parte, învasarea profunda implica utilizarea reselelor neuronale.
+ 
+Recunoasterea faciala presupune bineinteles rezolvarea catorva probleme:
+In prim pas, avem nevoie de cel putin o imagine in care sa gasim, cel putin o fata, in cazul in care imaginea contine mai multe fete, acestea trebuiesc detectate.
+În pasul doi, algoritmul trebuie sa se concentreze pe fiecare fasa si sa poata înselege ca si atunci cand o fasa este într-o direcsie ciudata sau într-o iluminare proasta, ea este înca aceeasi persoana.
+În al treilea rând, trebuie sa existe o disponibilitate de a alege trasaturile faciale unice, care pot fi folosi pentru a face distinctia intre oameni, cum ar fi: cat de mari sunt ochii, cat de alungita este fata, etc. În cele din urma, comparasi caracteristicile unice ale acelei fese cu tosi oamenii pe care deja îi cunoastesi, pentru a determina numele persoanei.
+Ca om, creierul este legat sa faca toate acestea automat si instantaneu. De fapt, oamenii sunt prea buni la recunoasterea feselor si ajung sa vada fese în obiectele obisnuite. Computerele nu sunt capabile de acest gen de generalizare la nivel înalt (cel pusin nu înca), asa ca trebuie sa le învasam cum sa faca fiecare pas în acest proces separat.
+Trebuie sa construim o conducta în care sa rezolvam separat fiecare pas de recunoastere a fesei si sa trecem rezultatul etapei curente la pasul urmator. Cu alte cuvinte, vom alatura împreuna mai mulsi algoritmi de învasare a masinilor:
+
+Pasii pentru recunoasterea faciala sunt descrisi in cele ce urmeaza:
+1.	Avem nevoie de o imagine care sa contina cel putin o fata.
+
+ 
+Figura 3. Mostra de imagine care contine o fata.
+ 
+2.	Cat timp avem cel putin o fata in imaginea, aceasta fata va trebui detectata.
+ 
+Figura 4. Detectarea fetei din imagine.
+
+3.	Dupa ce detectia a avut loc, se vor analiza caracteristicile faciale, ale subiectului in cauza.
+ 
+Figura 5. Analiza caracteristicilor faciale din imagine.
+
+4.	Se va compara fata gasita in imagine cu toate fetele care se gasesc in baza de date.
+ 
+Figura 6. Compararea fetei detectatea, cu cea din baza de date.
+ 
+5.	Dupa care se va face o predictie.
+ 
+Figura 7. Predictia pentru imaginea curenta.
+
+In cele ce urmeaza abordarea problemei se va face pas cu pas, pentru fiecare pas se va face cunoscut in linii mari algoritmul de invatare al masinilor.
+
+Pasul 1 – Gasirea tuturor fetelor:
+Primul pas în conducta noastra este detectarea fesei. Evident, trebuie sa gasim fesele într-o fotografie înainte de a incepe analiza caracteristicilor faciale.
+Detectarea fesei a fost integrata la începutul anilor 2000, când Paul Viola si Michael Jones au inventat o modalitate de a detecta fese, metoda care era destul de repida pentru a rula pe camere ieftine. Cu toate acestea, exista solusii mult mai fiabile acum. Vom folosi o metoda inventata în 2005 numita Histograma de gradiensi orientasi - sau doar HOG pe scurt.
+Pentru a gasi fese într-o imagine, vom începe prin a transforma imaginea noastra intr-o imagine alb-negru, deoarece nu avem nevoie de date despre culoare pentru a gasi fese:
+ 
+
+  
+Figura 8. Transformarea imaginii color in alb-negru.
+
+Dupa care ne vom uita la fiecare pixel din imaginea noastra unul câte unul. Pentru fiecare pixel, dorim sa privim pixelii care îl înconjoara:
+
+ 
+Figura 9. Analiza caracteristicilor faciale.
+
+Scopul este acela de a ne da seama cât de întunecat este pixelul curent in comparatie cu pixelii care îl înconjoara. Apoi vrem sa desenam o sageata care sa arate în ce direcsie imaginea devine mai întunecata. Daca acest proces este repetat pentru fiecare pixel din imagine,in cele din urma o sa avem fiecare pixel  înlocuit de o sageata. Aceste sagesi sunt numite gradiensi si arata fluxul de la lumina la întuneric pe întreaga imagine:
+ 
+ 
+ 
+ 
+ 
+Figura 10. Fluxul de la lumina la intuneric, pentru intreaga imagine.
+
+Pentru a gasi chipuri în aceasta imagine HOG, tot ce trebuie sa facem este sa gasim acea parte a imaginii care arata cel mai asemanator cu un model HOG cunoscut care a fost extras dintr-o gramada de alte fese de antrenament. Folosind aceasta teehnica, gasirea fetelor in fiecare imagine este mult mai simpla.
+
+ 
+Pasul 2 - Pozitionarea si proiectarea fetelor:
+Dupa ce am izolat toate fetele dintr-o imagine, ne vom confrunta cu faptul ca acele fete care sunt orientate in diferite directii, arata complet diferit pentru un computer. Pentru a sine cont de acest lucru, vom încerca sa denaturam fiecare imagine, astfel încât ochii si buzele sa fie întotdeauna în locul unde esantionul este în imagine. Acest lucru va face mult mai usora compararea feselor în etapele urmatoare.
+Pentru a face acest lucru, vom folosi un algoritm numit estimarea caracteristicilor faciale (face landmark estimation). Exista multe modalitasi de a face acest lucru, dar vom folosi abordarea inventata în 2014 de Vahid Kazemi si Josephine Sullivan.
+Ideea de baza este ca vom veni cu 68 de puncte specifice (numite repere) care exista pe fiecare fasa - partea superioara a barbiei, marginea exterioara a fiecarui ochi, marginea interioara a fiecarei sprâncene etc. Apoi vom pregati algoritmul masinii de învasare pentru a putea gasi aceste 68 de puncte specifice pe orice fasa:
+
+ 
+Figura 11. Identificarea celor 68 de repere faciale.
+
+Acum, ca stim unde sunt ochii si gura, vom roti pur si simplu, vom scala si vom forfeca imaginea, astfel încât ochii si gura sa fie centrate cât mai bine posibil. Vom folosi doar transformari de baza ale imaginii, cum ar fi rotasia si scalarea, care pastreaza liniile paralele (numite transformari afine):
+
+ 
+Figura 12. Detectarea fetei, identificarea reperelor faciale, extragerea reperelor si forfecarea imaginii.
+
+Indiferent de modul în care se roteste fasa, algoritmul este capabili sa centreze ochii si gura în aproximativ aceeasi pozisie ca si în imagine. Acest lucru va face urmatorul pas mult mai precis.
+
+Pasul 3 – Codificarea fetei:
+Cea mai simpla abordare a recunoasterii faciale este aceea de a compara direct fasa necunoscuta gasita în pasul 2 cu toate imaginile pe care le avem ale persoanelor care au fost deja etichetate. Când gasim o fasa marcata anterior, care arata foarte asemanatoare cu fasa necunoscuta, trebuie sa fie aceeasi persoana, insa acest proces este foarte greoi si incet.
+Avem nevoie de o modalitate de a extrage câteva masuratori de baza de la fiecare fasa. Apoi am putea masura fasa necunoscuta în acelasi fel si am gasi fasa cunoscuta cu cele mai apropiate masuratori. De exemplu, am putea masura dimensiunea fiecarei urechi, distansa dintre ochi, lungimea nasului etc.
+Se pare ca masuratorile care ni se par evidente oamenilor (cum ar fi culoarea ochilor) nu au sens cu adevarat pentru un calculator care priveste la pixelii individuali dintr-o imagine. Cercetatorii au descoperit ca cea mai corecta abordare este aceea de a permite computerului sa-si dea seama ce masuratori sa colecteaza. Învasarea profunda face o treaba mai buna decât cea a oamenilor în a determina care parsi ale fesei sunt importante pentru masurare.
+
+ 
+Pasul 4 – Gasirea numelui persoanei codificate:
+Ultimul pas este, de fapt, cel mai simplu pas în întregul proces. Tot ce trebuie sa facem este sa gasim persoana din baza noastra de date a unor oameni cunoscusi care au cele mai apropiate masuratori imaginii testului nostru. Acest lucru se obtine folosind orice algoritm de baza de clasificare a învasarii masinilor. 
+
+ 
+Capitolul 2. Sisteme si tehnologii folosite
+
+2.1 Python
+Python este un limbaj de programare, interpretor, orientat pe obiecte, cu semantica dinamica. Structurile de date construite la nivel înalt, combinate cu tastarea dinamica si legarea dinamica, îl fac foarte atractiv pentru dezvoltarea rapida a aplicasiilor, precum si pentru utilizarea ca limbaj de scripting sau lipire pentru a conecta împreuna componentele existente. Sintaxa simpla si usor de învasat a lui Python accentueaza lizibilitatea si prin urmare, reduce costul întresinerii programelor. Python accepta module si pachete, ceea ce încurajeaza modularitatea programelor si reutilizarea codului. Interpretul Python si biblioteca extensiva standard sunt disponibile atat în forma sursa cat si in forma binara.
+
+2.1.1 Dezvoltare
+Limbajul de programare Python a fost conceput la sfârsitul anilor 1980, insa implementarea sa a fost inisiata în decembrie 1989 de Guido van Rossum in sarile de Jos, fiind capabil de tratarea excepsiilor. Van Rossum este autorul principal al limbajului de programare Python, iar principalul sau rol este de a continua sa decida direcsia limbajului de programare Python.
+Python 2.0 a fost lansat pe 16 octombrie 2000, cu multe caracteristici noi, inclusiv un colector de gunoi care detecteaza cicluri (în plus fasa de numararea referinselor) pentru gestionarea memoriei si suport pentru Unicode. Cu toate acestea, cea mai importanta schimbare a fost procesul de dezvoltare în sine, cu trecerea la un proces mai transparent si mai bine sussinut de comunitate.
+Python 3.0 este o versiune majora, incompatibila cu versiunile anterioare, a fost lansata pe 3 decembrie 2008 dupa o perioada lunga de testare. Multe dintre caracteristicile sale majore au fost, de asemenea, returnate la versiunile anterior compatibile cu Python 2.6 si 2.7.
+Pentru dezvoltarea aplicatiei Python au fost necesare:
+•	PyCharm IDE
+•	Putty-0.67
+•	CMake
+•	Active Python DataBase
+•	DB Browser for SQLite
+
+Cateva din pachetele Python instalate:
+•	dlib v19.13.0 – pachetul pentru retele neuronale si masini autonome
+•	face-recognition – pachetul pentru recunoastere faciala
+•	Py-Audio – pachetul pentru semnale audio
+•	pypiwin32 – pachetul pentru accesarea API-urilor
+•	pyspeech – pachetul pentru comenzi vocale
+•	pyttsx – pachetul pentru convertire sir caractere in semnal audio
+•	SpeechRecognition – pachetul pentru recunoastere vocala
+
+Pentru a utiliza fiecare functionalitate a aplicatiei este necesara o conexiune la internet, deoarece apelarea API-ului Google cere acest lucru. In cazul in care nu exista o conexiune la internet, utilizatorul va fi informat. Modulul responsabil de transformarea comenzi vocale date de utilizator in mesaj text, foloseste API-ul de la Google, acest lucru facand conexiunea la internet o necesitate. 
+
+2.1.2. Python Dlib
+2.1.2.1 Introducere
+Dlib este o biblioteca software generala cu multiple platforme, scrisa în limbajul de programare C++ si folosita pentru rezolvarea problemelor reale. In primul rând, reprezinta un set de componente software independente. Este un software open-source lansat sub licensa Boost Software License.
+Davis King a fost autorul principal al bibliotecii dlib inca de la începutul dezvoltarii sale în 2002, aceasta a crescut pentru a include o mare varietate de instrumente. Începând cu anul 2016, aceasta biblioteca, consine componente software pentru rezolvarea problemelor legate de resea, fire, interfese grafice, structuri de date, algebra liniara, învasare automata, prelucrare de imagini, extragere de date, parsarea textului, optimizare numerica, resele bayesiene si multe alte sarcini. 
+ 
+Figura 13. Logo-ul pachetului Dlib.
+
+În ultimii ani, o mare parte a dezvoltarii a fost axata pe crearea unui set larg de instrumente statistice de învasare a masinilor. Cu toate acestea, dlib ramâne o biblioteca cu scop general si saluta contribusiile unor componente software de înalta calitate, utile în orice domeniu.
+Este folosit atât în industrie, cât si în mediul academic într-o gama larga de domenii, inclusiv robotica, dispozitive încorporate, telefoane mobile si medii mari de calcul de înalta performansa. Licensa Dlib open source va permite sa o utilizasi în orice aplicasie, gratuit.
+Spre deosebire de o multitudine de proiecte open source, aceasta ofera o documentasie completa si precisa pentru fiecare clasa si funcsie. Exista, de asemenea, moduri de depanare care verifica precondisiile documentate pentru funcsii. Când acest lucru este activat, va prinde marea majoritate a erorilor cauzate de funcsiile de apelare incorecta sau de utilizarea obiectelor într-un mod incorect. 
+Corelarea cu filozofia de dezvoltare a bibliotecii dlib este o dedicasie pentru portabilitate si usurinsa în utilizare. Prin urmare, tot codul bibliotecii este conceput astfel încât sa fie cât mai portabil posibil si, în mod similar, sa nu necesite ca utilizatorul sa configureze sau sa instaleze ceva. Pentru a realiza acest lucru, codul specific platformei este limitat în ambalajele API. Orice altceva este fie stratificat pe partea de sus a acestor ambalaje, fie este scris în standard ISO standard C++. În prezent, biblioteca este cunoscuta pentru a lucra pe OS X, MS Windows, Linux, Solaris. 
+
+ 
+2.1.2.2 Mod de functionare
+Detectarea reperelor faciale este un subgrup al problemei de predicsie a formei. Având o imagine de intrare (si în mod normal o regiune de interest care specifica subiectul), un predictor de forma încearca sa localizeze punctele cheie de interes de-a lungul formei.Reperele faciale sunt folosite cu succes pentru alinierea fesei, pentru postura capului, pentru schimbarea fesei si pentru detectarea intermitenta.
+În contextul reperelor faciale, scopul nostru este de a detecta structuri faciale importante pe fasa, folosind metode de predicsie a formei. Repere reale sunt folosite pentru a localiza si reprezenta regiunile vizibile ale fesei, cum ar fi:
+•	ochii
+•	sprâncenele
+•	nasul
+•	gura
+•	conturul fetei
+Detectarea reperelor faciale este deci un proces în doua etape:
+Pasul 1: Localizasi fasa în imagine.
+Pasul 2: Detectasi structurile faciale cheie pe ROI fasa.
+In urma pasului 1, obsinem o caseta de limitare a fesei (adica, coordonatele (x, y) ale fesei din imagine):
+Având în vedere regiunea fesei, putem aplica apoi Pasul 2 si anume, detectarea structurilor faciale cheie în regiunea fesei. Exista o varietate de detectori de reper faciali, dar toate metodele încearca, în esensa, sa localizeze si sa eticheteze urmatoarele regiuni faciale: gura, spranceana dreapta, spranceana stânga, ochiul drept, ochiul stang, nasul si falca.
+Detectorul de repere faciale inclus în biblioteca dlib, are rolul de a  eticheta imaginile in care se gasesc structuri faciale. Aceste imagini sunt marcate manual, specificând coordonatele (x, y) ale regiunilor care înconjoara fiecare structura faciala.
+Având în vedere aceste date de antrenament, un ansamblu de arbori de regresie este instruit sa estimeze pozisiile reperului facial direct din intensitasile pixelilor (adica nu are loc o "extragere a caracteristicilor").
+ 
+Figura 14. Reprezentarea caracteristicilor faciale.
+
+Rezultatul final este un detector de repere faciale care poate fi folosit pentru a detecta reperele faciale în timp real, cu predicsii de înalta calitate.
+Detectorul de repere faciale pre-instruit, din interiorul bibliotecii dlib este utilizat pentru a estima locasia a 68 de coordonate (x, y), care sunt mapate pe structura fetei. Indicii celor 68 de coordonate pot fi vizualizati in imaginea de mai jos:
+
+ 
+Figura 15. Indicii celor 68 de repere faciale.
+Indiferent de setul de date care se utilizeaza, acelasi cadru se poate folosi pentru a forma un predictor de forma pe datele de antrenament de intrare - acest lucru este util daca dorisi sa pregatisi detectori de reper facial sau predictori personalizasi pentru forma proprie.
+
+2.1.3. Speech to Text
+Recunoasterea vorbirii este un sub-câmp interdisciplinar al lingvisticii computasionale care dezvolta metodologii si tehnologii care permit recunoasterea si traducerea limbii vorbite în text de catre calculatoare.
+Google are un API de recunoastere al vorbirii, acest API converteste intrarea audio, intrare care poate sa provina de la un microfon în text
+
+2.2. SQLite Data Base
+Folosirea unei baze de date este importanta, deoarece gestioneaza eficient datele si permite administratorilor sa efectueze cu usurinta mai multe sarcini, cateva din avantajele folosirii unei baze de date sunt:
+•	Reduce redundanta datelor
+•	Imbunatatirea accesului la date pentru administratori
+•	Securitatea imbunatatita a datelor
+•	Dezvoltarea facila a programului de aplicatii noi
+SQLite este un sistem de gestionare a bazelor de date relationale, scris in limbajul de programare C. Spre deosebire de multe alte sisteme de gestionare a bazelor de date, SQLite nu este un motor de cautare intr-o baza de date de tip client-server, ci mai degraba face parte din programul final.
+Foloseste o sintaxa dinamica de tip SQL, care nu garanteaza integritatea domeniului, fiind o alegere populara pentru bazele de date incorporate si pentru stocarea locala in aplicatii software cum ar fi browserele web. 
+In ziua de astazi este probabil cel mai raspandit motor de baze de date, folosit de mai multe browsere, sisteme de operare si sisteme incorporate. SQLite are legaturi cu multe limbaje de programare.
+ 
+Baza de date pe care aplicatia o foloseste este alcatuita din urmatoarele campuri:
+•	ID – Indexare Automata, contabilizeaza numarul de persoane din baza de date
+•	PICTURE – Tipul de data este BLOB(Binary Large Object), stocheaza fotografiile persoanelor din baza de date
+•	TYPE – Tipul de data este Text, contine informatii cu privire la extensia cu care fotografia a fost salvata
+•	FILE_NAME – Tipul de data este Text, contine numele imaginii salvate in baza de date si totodata numele persoanei din fotografia respectiva.
+
+ 
+Figura 16. Structura bazei de date.
+ 
+Capitolul 3. Prezentarea Aplicatiei
+
+3.1. Scopul aplicatiei
+Aplicatia care face tema acestei lucrari reprezinta un sistem de autentificare si validare bazat pe recunoastere faciala, procesare de imagini, fiind o aplicatie capabila sa interactioneze cu utilizatorul prin intermediul sistemului audio.
+Aceasta aplicatie are rolul de a asigura accesul utilizatorului(angajatului) in cladirea in care acesta lucreaza, prin intermediul unei camere web instalate deasupra turnichetului de la intrarea in cladire, de asemenea odata cu accesul in cladire se va face si pontajul de intrare, respectiv iesire in functie de caz. 
+ 
+Figura 17. Schitarea posibilitatii de utilizare a aplicatiei.
+
+Sistemul de fata scoate din ecuatie nevoie unui card de acces, pe care angajatul ar trebui sa il aibe zilnic in posesie, pentru a putea intra in cladire si a se putea ponta, astfel in cazul in care acest card este uitat acasa sau este pierdut nu va influenta cu nimic prezenta la servici, deoarece sistemul se bazeaza pe detectia faciala a angajatului. 
+Accesul in cladire este restrictionat doar la persoanele care sunt autorizate, persoanele noi angajate vor fi adaugate in baza de date, optiunea de adaugare in baza de date va fi atribuita unui administrator, deeoarece acest lucru presupune reantrenarea retelei neuronale.
+3.2. Prezentarea modulelor
+3.2.1. Captura de imagini (ImageCapture)
+Modulul responsabil cu captura imaginilor, acest modul va fi apelat numai in cazul in care utilizatorul nu doreste sa se autentifice cu contul de Facebook. Este responsabil cu  pornirea  camerei la care aplicatia este legata si va cere utilizatorului in primul rand sa isi introduca numele complet, (posibil si alte date personale), dupa care mai multe poze i se vor face din unghiuri diferite, pentru ca ulterior detectia pe care reteaua neuronala o va face sa fie mai precisa.
+
+3.2.2. DataBase
+Acest modul implementeaza baza de date de care aplicatia se foloseste, fiind vorba de o baza de date locala, in aceasta baza de date se vor introduce poze cu angajatii cu drept de acces in cladire. Introducerea in baza de date se va face fie in urma utilizarii API-ului de la Facebook fie prin apelarea modulului ‘ImageCapture’.
+
+3.2.3. FaceRecognition & Neural Network Training
+Dupa cum ii spune si numele, modulul va fii responsabil cu recunoasterea faciala, pentru ca procesul sa fie rapid si eficient am apelat la o retea neuronala antrenata in acest scop. Recunoasterea faciala se face prin compararea fiecarei persoane detectate in cadrul fluxului video cu cele deja existente in baza de date, in cazul in care persoana nu exista in baza de date se va instiinta administratorul despre acest lucru, tot administratorul are obligatia sa reantreneze reteaua neuronala dupa ce o persoana noua a fost adaugata in baza de date, acest lucru ii va permite accesul in cladire.
+ 
+3.2.5. Speech2Text
+Prin implementarea acestui modul utilizatorul va putea interactiona cu aplicatia prin intermediul sistemului audio. Utilizand un microfon, utilizatorul va putea raspunde sistemului. Raspunsul dat sistemului va fii convertit intr-un sir de caractere, folosind Google API, sirul de caractere va avea drept scop stabilirea directiei aplicatiei, cu alte cuvinte va hotara daca umeaza o captura de ecran sau descarcarea pozelor sale de profil de pe Facebook. 
+
+3.2.6. Text2Speech
+Acest modul va converti un sir de caractere intr-o comanda audio, comanda pe care sistemul o va reda utilizatorului folosind un difuzor(boxele laptop-ului). Acest modul este mult mai simplist decat cel de Speech2Text, deoarece redarea audio se face folosind biblioteci python.
+
+3.2. Implementarea modulelor
+Aplicatia a fost dezvoltata pe baza modulelor mai sus descrise. Modulele comunica intre ele, dupa cum urmeaza, atunci cand pornim aplicatia, adica functionalitatea de baza, aceasta fiind detectia si recunoasterea faciala, o instanta a camerei web este pornita, in spate este rulat algoritmul retelei neuronale, algoritm responsabil cu detectia faciala in prima instanta. Atunci cand detectie este confirmata in captura de imagine, captura va fi redimensionata, ramanand doar fata persoanei in cauza, dupa care i se vor extrage caracteristicile faciale, caracteristici care mai apoi vor fi comparate cu cele deja existente in fisierul antrenat. Fisierul antrenat nu este altceva, decat un fisier in care se gasesc caracteristicile faciale ale tuturor persoanelor din baza de date locala. In cazul in care persoana face parte din baza de date, un chenar rosu va aparea peste fata acesteia, iar in partea de jos a chenarului se afla o eticheta cu numele persoanei in cauza.
+
+ 
+3.3.1. Implementarea generala:
+Sistemul este impartit in trei module mari:
+•	Modulul Audio
+•	Modulul Video
+•	Baza de Date
+
+ 
+Figura 18. Arhitectura sistemului.
+
+Modulul audio, este reprezentat de submodulele: ‘Speech2Text’ si ‘Text2Speech’, responsabile de convertirea semnalului audio intr-un sir de caractere, respectiv convertirea unui sir de caractere intr-un semnal audio. Submodulul ‘Speech2Text’ are rolul de a oferi utilizatorului, ocazia de a interactiona cu aplicatia folosind comenzi vocale, comenzi pe care API-ul Google sa le transforme intr-un sir de caractere, ca mai apoi acest sir de caractere sa constituie o comanda pentru aplicatia de fata.
+
+Modulul video, este alcatuit din urmatoarele submodule: ‘ImageCapture’, ‘WebCamDeploy’ si ‘NeuralNetwork’. Cand comanda vocala data de utilizator a fost procesata, submodulul ‘WebCamDeploy’ va intra in actiune, pornind o instanta a camerei web integrate a laptopului, dupa care submodulul ‘ImageCapture’, va face trei capturi de ecran, din trei unghiuri diferite, utilizatorul fiind informat cu ajutorul submodulului ‘Text2Speech’, referitor la schimbarea pozitiei fetei. Submodulul ‘NeuralNetwork’ va reantrena reteaua ori de cate ori un nou utilizator este adaugat in baza de date, acest submodul mai este responsabil si de confirmarea sau infirmarea apartenentei unui utilizator in baza de date. 
+Baza de date, este una locala, stocata pe laptop si contine informatii cu privire la utilizatori. Acest modul interactioneaza cu modulul Video, prin faptul ca atunci cand o noua persoana este introdusa sau stearsa, baza de date este responsabila cu aceasta sarcina.
+
+3.3.2. Implementare in detaliu:
+In acest subcapitol se va face o descriere amanuntita referitoare la design-ul aplicatiei si anume ce se imtampla in spate, atunci cand apasam un buton din design-ul grafic al interfetei aplicatiei.
+
+ 
+Figura 19. Interfata grafica a aplicatiei.
+ 
+Aplicatia contine patru butoane:
+•	Start Aplicatie
+•	Inserati Persoana
+•	Antrenare Retea
+•	Inchide Aplicatia
+
+•	Butonul Start Aplicatie:
+
+ 
+Figura 20. Design-ul implementarii butonului de pornire a aplicatiei.
+
+La apasarea acestui buton, se vor intampla urmatoarele: o noua instanta a camerei web a laptopului va porni, fiecare cadru din noua instanta va fi trimis catre reteaua neuronala si va fi procesat, cu alte cuvinte in cazul in care apare o fata in cadrul curent, se vor extrage caracteristicile faciale si se vor compara cu cele deja existente in fisierul deja antrenat (trained_knn_model.clf). In cazul in care persoana exista in baza de date, se va face o predictie conturandu-se fata persoanei din cadrul curent, iar in partea de jos a conturului se va gasi o eticheta cu numele persoanei respective. 
+
+ 
+Figura 21. Predictia retelei neuronale.
+
+In cazul in care vor fi sapte detectii consecutive confirmate  ale aceleiasi persoane, accesul ii va fi permis.
+ 
+Figura 22. Interfata grafica, pentru accesul permis.
+ 
+Daca persoana nu se afla in baza de date, i se va contura fata si va fi etichetat ca necunoscut.
+
+ 
+Figura 23. Etichetare specifica persoanelor care nu fac parte din baza de date.
+
+Dupa ce accesul persoanei in cauza a fost permis, se va face o reintoarcere catre meniul principal.
+
+•	Butonul Inserati Persoana:
+Urmatorul buton din meniul aplicatiei este ‘Inserati Persoana’. Dupa apasarea acestui buton utilizatorul va fi atentionat printr-un mesaj vocal cu ajutorul submodulului ‘Text2Speech’ cu privire la faptul ca va trebui sa se pozitioneaza in fata camerei web a laptopului si sa foloseasca o comanda vocala ‘take a photo’, comanda care va fi procesata de API-ul Google si va avea ca efect pornirea unei noi instante a camerei web. Dupa pornirea instantei utilizatorul are sarcina de a privi in camera web si a astepta pret de cateva secunde declansarea automata a acesteia, dupa ce poza a fost facuta, utilizatorul va trebui sa isi introduca numele in interfata grafica care ii va aparea pe ecran (este de preferat sa se introduca mai intai prenumele urmat de nume, in urmatoarea forma: Prenume_NUME), dupa care acesta va trebui sa apese pe butonul ‘Adauga’ din noua interfata, urmand sa fie informat cu privire la faptul ca va trebui sa isi mute privirea putin inspre stanga, urmand sa i se faca o noua poza, iar mai apoi inspre drepta pentru acceasi actiune. 
+
+ 
+Figura 24. Interfata grafica de adaugare nume utilizator.
+
+Aceste poze vor fi adaugate in baza de date, in total se vor gasi minim trei poze pentru fiecare utilizator. Instanta camerei se va inchide automat si se va reveni la meniul principal.
+
+ 
+Figura 25. Design-ul implementarii butonului de inserare a unui nou utilizator.
+•	Stergerea unei persoane din baza de date:
+Pentru a sterge o persoana din baza de date, este necesara o navigare in structura de foldere stocata local, se va cauta folderul cu numele persoanei, care se doreste a fi sters, se va sterge intreg directorul, iar apoi se va reantrena reteaua neuronala din interfata grafica a aplicatiei.
+
+ 
+Figura 26. Structura de foldere a bazei de date.
+
+ 
+Figura 27. Design-ul pentru stergerea unui utilizator.
+ 
+•	Butonul Antrenare Retea:
+Pentru antrenarea retelei, trebuie introdusa o parola pentru evitarea adaugarii in baza de date a utilizatorilor noi veniti, de catre persoane neautorizate.
+
+ 
+Figura 28. Interfata grafica pentru introducerea parolei de administrator.
+
+Folosindu-se pozele persoanelor din baza de date, reteaua va fi reantrenata, iar datele de antrenare vor fi salvate in urmatorul fisier: ‘trained_knn_model.clf’, dupa care administratorul va fi informat vocal cu privire la faptul ca persoana face parte din baza de date, revenindu-se la meniul principal.
+
+ 
+Figura 29. Design-ul implementarii pentru reantrenarea retelei neuronale.
+3.4. Aplicatii existente:
+Tehnologia de recunoastere faciala a fost asociata în mod tradisional cu sectorul de securitate, dar astazi exista o expansiune activa în alte industrii, inclusiv în marketing si sanatate.
+Majoritatea cazurilor de utilizare a recunoasterii faciale se încadreze în trei categorii majore:
+Securitate: Companiile pregatesc algoritmi de învasare profunda pentru a recunoaste detectarea fraudei, pentru a reduce nevoia de parole tradisionale si pentru a îmbunatasi capacitatea de a face distincsia între o fasa umana si o fotografie.
+
+1.	Aplicatia Kairos – pentru detectarea fraudei:
+În mod evident, una dintre companiile mai mari din spasiul de recunoastere faciala a inteligentei artificiale, Kairos utilizeaza învasarea automata si viziunea pe computer pentru a-si executa suita de instrumente care includ caracteristici de recunoastere faciala standard si alte opsiuni, cum ar fi detectarea sexului, vârstei si etniei.
+
+ 
+Figura 30. Detectia utilizand aplicatia Kairos.
+
+Asistensa medicala: învasarea automata este combinata cu viziunea computerului pentru a urmari cu mai multa acuratese consumul de medicamente pentru pacient si pentru a sprijini procedurile de gestionare a durerii.
+
+2.	AiCure - Aderare la medicasie
+Medicamentul non-aderat sau in neconformitate, apare atunci când un pacient nu reuseste sa-si ia medicamentele asa cum este prescris de medicul sau. Aceasta este o provocare majora, care apare în aproximativ 50% dintre paciensii care primesc prescripsii de medicamente. Fondata în 2010, AiCure este o companie care utilizeaza tehnologia de recunoastere a fesei si viziunea pe computer pentru a îmbunatasi practicile de aderare la medicasie. 
+
+ 
+Figura 31. Logo-ul aplicatiei AiCure.
+
+Marketing: Bogat în considerente etice, este un domeniu cu o mare crestere in inovasia recunoasterii faciale.
+
+3.	Walmart – prevenire furt
+În sectorul comersului cu amanuntul, principalii comerciansi par sa exploreze tehnologia de recunoastere a fesei în scopuri de securitate. Cu toate acestea, s-au înregistrat unele eforturi cu privire la preocuparile privind confidensialitatea consumatorilor.
+În 2015, Walmart a început sa testeze recunoasterea faciala în unele magazine, într-un efort de identificare a ucigasilor, dar ulterior a încetat utilizarea acestuia. 
+
+ 
+Figura 32. Logo-ul Walmart.
+
+ 
+Capitolul 4. Directii de continuare a dezvoltarii
+
+Pentru a eficientiza procesul de verificare si al imbunatati, dupa ce utilizatorului i se fac cele trei poze, mai intai se va verifica faptul ca exista o fata in fiecare poza, dupa care se va confirma faptul ca aceasi persoana se afla in cele trei poze, in caz contrar, procesul trebuie reluat.
+Implementarea unei baze de date, care sa tina evidenta orei de venire, respectiv plecare pentru fiecare angajat, extinde aplicatia, ajutand departamentele de resurse umane. Posibilitatea implementarii unui raport la nivel de organizatie, ajuta managementul la o mai buna urmarire a situatiei fiecarui angajat si  totodata este in avantajul angajatului care nu mai are nevoie de card de acces, pontarea manuala astfel devine istorie.
+Instiintarea departamentului de IT printr-un mail, atunci cand sistemul detecteaza o persoana fara drept de acces, este o functionalitate extrem de folositoare.
+Pentru o mai buna predictie a retelei neuronale, este necesara o baza de date cat mai mare, cu alte cuvinte este necesar ca pentru fiecare utilizator sa avem cat mai multe poze, din unghiuri diferite. Acest lucru se poate realiza foarte usor, folosind pozele de profil de pe Facebook ale acestuia. Pentru acest lucru vom avea nevoie ca utilizatorul sa se autentifice cu contul de Facebook, urmand a fi generat un jeton de acces, pentru a descarca pozele sale de profil.
+In programarea pe calculator, o interfata de programare a plicatiilor (API) este un set de definitii, protocoale si instrumente de subrutina pentru construirea de software de aplicatii. In termeni generali, este un set de metode clar definite de comunicare intre diferitele componente sofware. 
+Un API bun face mai usoara dezvoltarea unei aplicatii desktop, prin furnizarea tuturor blocurilor de constructie, care sunt mai apoi asamblate de catre programator.
+Specificatiile API pot lua mai multe forme, dar adesea sunt incluse specificatii pentru rutine, structuri de date, clase de obiecte, variabile sau apeluri la distanta. Documentatia pentu API este furnizata de obicei pentru a facilita utilizarea si implementarea.
+
+La fel ca o interfata grafica, faciliteaza utilizarea programelor de catre dezvoltatori. Prin abstractizarea implementarii care sta la baza si prin expunerea obiectelor sau actiunilor de care dezvoltatorul are nevoie, un API simplifica programarea. In timp ce o interfata grafica pentru un client email ar putea oferi utilizatorului un buton care sa indeplineasca toti pasii necesari pentru preluarea si evidentierea mesajelor noi, un API pentru intrarea sau iesirea fisierelor ar putea oferi dezvoltatorului o functie care copiaza un fisier de la o locatie la alta fara o solicitare din partea programatorului prin care acesta ar trebui sa inteleaga operatiile sistemului de fisiere, proces care are loc in spatele sistemului.
+Un jeton de acces contine un identificator de securitate(SID) pentru utiilizator, toate SID-urile pentru grupurile carora le apartine si privilegiile utilizatorului. Un token de acces reprezinta un obiect incapsulannd identitatea de securitate a unui proces sau a unui fir. Un jeton este folosit pentru a lua deciziile de securitate si pentru a stoca informatii despre o entitate a sistemului. În timp ce un token este utilizat în general pentru a reprezenta numai informasii de securitate, el este capabil sa desina date suplimentare de forma libera care pot fi atasate înca din timpul creeari token-ului.
+Ori de cate ori un fir sau un proces interactioneaza cu un obiect securizat sau incearca sa efectueze o sarcina de sisteem care necesita privilegii, sistemul de operare verifica eficacitatea accesului efectiv pentru a determina nivelul sau de autorizare.
+Atunci cand cineva doreste sa se conecteze cu o aplicatie folosind Facebook Login, iar solicitarea ii este aprobata pentru permisiunile bifate, aplicatia obtine un indicativ de accees temporar.
+Un token de acces este un sir de caractere opac care identifica un utilizator, o aplicatie sau o pagina si poate fi folosit de aplicatie pentru a efectua apeluri API grafice. Jetoanele de acces sunt obtinute printr-un numar de metode. Indicativul contine informatii despre momentul expirarii token-ului si a aplicatiei care a generat token-ul. Din cauza controalelor de confidentialitate, majoritatea apelurilor API pe Facebook trebuie sa includa un jeton de acces. 
+ 
+Exista diferite tipuri de jetoane de acces pentru a sprijini diferite cazuri de utilizare:
+•	Token pentru accesul catre user, utilizat ori de cate ori aplicatia solicita ca API-ul sa citeasca, modifice sau sa scrie date ale unei anumite persoane pe Facebook in numele lor.
+•	Token pentru accesul aplicatiilor, necesar pentru a modifica si citi setarile aplicatiei.	
+•	Token pentru accesul unei pagini, aceste tipuri de jetoane sunt similare cu cele de acces din partea user-ului, cu exceptia faptului ca ofera permisiunea API-urilor care citesc, scriu sau modifica datele apartinand unei pagini Facebook. 
+Pentru a genera jeton cu  acces pentru pagina, un administrator al paginii trebuie sa acorde o permisiune extinsa numita ‘manage_pages’. Odata  ce aceasta permisiune a fost acordata, token-ul de acces la pagina poate fii preluat.
+Desi fiecare platforma genereaza token-uri de acces prin API-uri diferite, toate platformele respecta strategia de baza pentru a obtine un jeton de utilizator:
+Atunci cand un nou utilizator (angajat) este adaugat in baza de date, acesta trebuie sa se autentifice cu contul de Facebook (in cazul in care nu doreste acest lucru, cu o camera web sau orice alt tip de camera i se vor face 5 poze din unghiuri diferite, poze care vor fii adaugate in baza de date), pentru ca generarea de token sa aiba loc, generare care ii va permite sistemului sa acceseze pozele sale de profil. Aceste poze vor fi adaugate in baza locala de date, insa pentru a avea acces in cladire, sistemul trebuie sa valideze persoana in cauza cu una existenta in baza de date, acest lucru va fi posibil numai dupa ce administratorul sistemului, va reantrena reteaua neuronala.
+Toate jetoanele de acces trebuie sa fie reinnoite la fiecare 90 de zile, cu acordul persoanei care utilizeaza aplicatia. Acest lucru nu blocheaza sistemul, deoarece odata ce jetonul a fost primit, pozele de profil sunt salvate local in baza de date, astfel utilizatorul trebuie sa faca o singura autentificare pentru a face parte din sistem.
+ 
+Capitolul 5. Concluzii
+
+In aceasta lucrare se prezinta o aplicatie Desktop pentru autentificare, folosind recunoastere faciala, dezvoltata in limbajul de programare Python, care utilizeaza Google API pentru procesarea comenzii vocale a utilizatorului.
+Aplicatia este foarte usor de utilizat datorita unui design grafic intuitiv si datorita posibilitatii de a interactiona cu aceasta aplicatie, folosind comenzi vocale. Autentificarea este rapida si eficienta, inregistrarea in baza de date si autentificarea se realizeaza in trei pasi simpli, introducerea in baza de date a utilizatorului, antrenarea retelei neuronale si in final autentificarea. Aplicatia aduce in prim plan tehnologii noi, care sunt din ce in ce mai folosite si vor avea un impact urias asupra omenirii.
+Directiile de dezvoltare se petrec in sfera eficientizarii si securitatii, dar si in zona de management prin implementarea si generarea unor rapoarte.
