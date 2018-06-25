@@ -34,7 +34,6 @@ def init_gui():
    b1 = Button(root, text='Adauga',
           command=(lambda e=ents: fetch(e)))
    b1.pack(side=LEFT, padx=5, pady=5)
-   b2 = Button(root, text='Quit', command=root.quit)
+   b2 = Button(root, text='Urmatoarea poza', command=root.quit)
    b2.pack(side=LEFT, padx=5, pady=5)
    root.mainloop()
-

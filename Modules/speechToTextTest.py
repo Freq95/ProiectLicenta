@@ -8,6 +8,12 @@ import multiprocessing
 import win32com.client as wincl
 from time import sleep
 
+def text2speech_fromGUI():
+    # aici vine gui cu validare acces
+    speak = wincl.Dispatch("SAPI.SpVoice")
+    speak.Speak("Unknown command!")
+    # TODO: apeleaza pagina cu accesul permis
+
 def text2speech(case):
 
     if case == 0:
@@ -61,60 +67,63 @@ def speech2text():
             global case, contor_trigger, numeCandidat
             case = 1
             contor_trigger = 0
-
-            while True:
-                ret, frame = cam.read()
-                cv2.imshow("test", frame)
-                if not ret:
-                    break
-                k = cv2.waitKey(1)
-                contor_trigger = contor_trigger + 1
-                if k % 256 == 27:
-                    # ESC pressed
-                    print("Escape hit, closing...")
-                    break
-                elif contor_trigger == 50:
-                    # no SPACE press needed
-                    path = 'D:/GitLocalRepo/ProiectLicenta_git/Image_DataBase/train/'
-                    os.chdir(path)
-
-                    if case == 1:
-                        # start simple GUI
-                        init_gui()
-
-                    # numele ultimului angajat introdus in lista
-                    numeCandidat = lista_nume_angajati[len(lista_nume_angajati) - 1]
-
-                    # creaza un nou director pentru noul angajat
-                    if not os.path.exists(numeCandidat):
-                        os.makedirs(numeCandidat)
-                        path = 'D:/GitLocalRepo/ProiectLicenta_git/Image_DataBase/train/' + numeCandidat
-                    else:
-                        path = 'D:/GitLocalRepo/ProiectLicenta_git/Image_DataBase/train/' + numeCandidat
-                        #print("Numele introdus face parte din baza noastra de date.")
-
-                    img_name = (numeCandidat + "{}.jpg").format(img_counter)
-                    cv2.imwrite(os.path.join(path, img_name), frame)
-                    imagePath = path + '/' + img_name
-                    print("{} salvata!".format(img_name))
-
-                    # insert a person picture in DB // create connection with DB
-                    conn = create_or_open_db('picture_db.sqlite')
-                    insert_picture(conn, imagePath)
-                    print("Poza a fost inserata in baza de date")
-                    # close the DB connection
-                    conn.close()
-                    img_counter += 1
-                    text2speech(case)
-                    case = case + 1
-                    contor_trigger = 0
-                    if case == 4:
+            try:
+                while True:
+                    ret, frame = cam.read()
+                    cv2.imshow("test", frame)
+                    if not ret:
                         break
+                    k = cv2.waitKey(1)
+                    contor_trigger = contor_trigger + 1
+                    if k % 256 == 27:
+                        # ESC pressed
+                        print("Escape hit, closing...")
+                        break
+                    elif contor_trigger == 50:
+                        # no SPACE press needed
+                        path = 'D:/GitLocalRepo/ProiectLicenta_git/Image_DataBase/train/'
+                        os.chdir(path)
 
+                        if case == 1:
+                            # start simple GUI
+                            init_gui()
 
+                        # numele ultimului angajat introdus in lista
+                        numeCandidat = lista_nume_angajati[len(lista_nume_angajati) - 1]
+
+                        # creaza un nou director pentru noul angajat
+                        if not os.path.exists(numeCandidat):
+                            os.makedirs(numeCandidat)
+                            path = 'D:/GitLocalRepo/ProiectLicenta_git/Image_DataBase/train/' + numeCandidat
+                        else:
+                            path = 'D:/GitLocalRepo/ProiectLicenta_git/Image_DataBase/train/' + numeCandidat
+                            #print("Numele introdus face parte din baza noastra de date.")
+
+                        img_name = (numeCandidat + "{}.jpg").format(img_counter)
+                        cv2.imwrite(os.path.join(path, img_name), frame)
+                        imagePath = path + '/' + img_name
+                        print("{} salvata!".format(img_name))
+
+                        # insert a person picture in DB // create connection with DB
+                        conn = create_or_open_db('picture_db.sqlite')
+                        insert_picture(conn, imagePath)
+                        print("Poza a fost inserata in baza de date")
+                        # close the DB connection
+                        conn.close()
+                        img_counter += 1
+                        text2speech(case)
+                        case = case + 1
+                        contor_trigger = 0
+                        if case == 4:
+                            break
+            except:
+                print("Inchide interfata grafica buton inserare.")
+                imagePath = 0
             cam.release()
             cv2.destroyAllWindows()
             return imagePath
+        else:
+            text2speech_fromGUI()
 
         if r.recognize_google(audio) == "hello":
             print("Hi")
@@ -132,12 +141,6 @@ def speech2text():
         print("Google Speech Recognition could not understand audio")
     except sr.RequestError as e:
         print("Could not request results from Google Speech Recognition service; {0}. Check network connection!".format(e))
-
-        if r.recognize_google(audio) == "play":
-            print("Correct")
-
-        if r.recognize_google(audio) == "stop":
-            print("Incorrect")
 
     return r.recognize_google(audio)
 

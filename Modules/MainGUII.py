@@ -1,6 +1,7 @@
 from tkinter import *
 from MainApp import start_nn
 from ImageCapture import text2speech
+from AdminPass import *
 from PIL import Image, ImageTk
 
 class MyFirstGUI:
@@ -15,7 +16,8 @@ class MyFirstGUI:
         #label.image = photo  # keep a reference!
         #label.grid()
 
-        self.label = Label(master, text="Bine ati venit, in cazul in care nu faceti parte din baza de date, apasati butonul <Insert in DB>!")
+        self.label = Label(master, text="Bine ați venit!\n\n\n")
+        self.label.configure(font=("Times New Roman", 15, "bold"))
         self.label.pack()
 
         self.submitButton = Button(master, text="", command=self.startGrantAccess)
@@ -47,8 +49,13 @@ class MyFirstGUI:
         start_nn(0)
 
     def trainNN(self):
-        print("You start the NN training!")
-        start_nn(1)
+        init_gui_admin()
+        try:
+            if parola_introdusa[0] == "1234":
+                print("You start the NN training!")
+                start_nn(1)
+        except:
+            print("Inchide interfata grafica.")
 
     def insertInDB(self):
         case = 0

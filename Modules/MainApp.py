@@ -31,8 +31,9 @@ import face_recognition
 from face_recognition.face_recognition_cli import image_files_in_folder
 from time import sleep
 import win32com.client as wincl
-
-
+from GuiBackground import access_grant_GUI
+import multiprocessing
+from time import sleep
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
@@ -174,9 +175,16 @@ def show_prediction_labels_on_image(img, predictions, check_repetition_array):
 
 
 def text2speech_simple():
+    # aici vine gui cu validare acces
+    p4 = multiprocessing.Process(target=access_grant_GUI)
+    p4.start()
+    sleep(2)
     speak = wincl.Dispatch("SAPI.SpVoice")
     speak.Speak("Hello " + name + " the access is grant!")
+    # access_grant_GUI()
     # TODO: apeleaza pagina cu accesul permis
+
+    p4.join()
 
 
 def check_repetition(check_repetition_array):
@@ -192,7 +200,7 @@ def check_repetition(check_repetition_array):
                     k = k + 1
 
             if k == 7:
-                text2speech_simple()
+                # text2speech_simple()
                 access_flag = 1
                 break
             else:
@@ -240,3 +248,4 @@ def start_nn(train_flag):
 
         video_capture.release()
         cv2.destroyAllWindows()
+        text2speech_simple()
