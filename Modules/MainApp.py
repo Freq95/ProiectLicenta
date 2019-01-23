@@ -176,15 +176,18 @@ def show_prediction_labels_on_image(img, predictions, check_repetition_array):
 
 def text2speech_simple():
     # aici vine gui cu validare acces
-    p4 = multiprocessing.Process(target=access_grant_GUI)
-    p4.start()
-    sleep(2)
-    speak = wincl.Dispatch("SAPI.SpVoice")
-    speak.Speak("Hello " + name + " the access is grant!")
+
+    if name != "unknown":
+        p4 = multiprocessing.Process(target=access_grant_GUI)
+        p4.start()
+        sleep(2)
+        speak = wincl.Dispatch("SAPI.SpVoice")
+        speak.Speak("Hello " + name + " the access is grant!")
+        p4.join()
     # access_grant_GUI()
     # TODO: apeleaza pagina cu accesul permis
 
-    p4.join()
+
 
 
 def check_repetition(check_repetition_array):
